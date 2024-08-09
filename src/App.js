@@ -62,6 +62,11 @@ function App() {
           imageUrl: 'https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2020/03/RatioImage_43.jpg.jpg?w=800&ssl=1',
         },
         {
+          label: '35mm Film',
+          ratio: { long: 3, short: 2 },
+          imageUrl: 'https://cdn.prod.website-files.com/5f58a077d654db1a689fd95b/641a6f142c6abe93e4badf38_Kav%20Dadfar-3x2.jpg',
+        },
+        {
           label: '16:9',
           ratio: { long: 16, short: 9 },
           imageUrl: 'https://www.denofgeek.com/wp-content/uploads/2022/04/Better-Call-Saul-Season-6-Premiere.jpg?resize=768%2C432',
@@ -69,17 +74,12 @@ function App() {
         {
           label: 'Cinemascope',
           ratio: { long: 2.39, short: 1 },
-          imageUrl: 'http://thefilmexperience.net/storage/2019/onceupon-driving.png?__SQUARESPACE_CACHEVERSION=1553095815580',
+          imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYm9PiM8edKeuECt8VQ2TVzNjZ2U-iPaIZmFY76xQSCbIGO8TkEEuYKY1SZpfOkYKrR4CQ__OTCRmnPLHdOnfNYIliAQC-yEYNl75VG8HYL190LT6HvI_xJMmRhvvZLzkHVRlmiVMvv1I-/s1600/Screen+Shot+2019-11-24+at+1.40.59+AM.jpeg',
         },
         {
           label: 'A4',
           ratio: { long: 21, short: 29.7 },
           imageUrl: 'https://via.placeholder.com/744x1052.png?text=A4+Paper',
-        },
-        {
-          label: '35mm Film',
-          ratio: { long: 3, short: 2 },
-          imageUrl: 'https://cdn.prod.website-files.com/5f58a077d654db1a689fd95b/641a6f142c6abe93e4badf38_Kav%20Dadfar-3x2.jpg',
         },
       ];
 
