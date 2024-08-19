@@ -41,7 +41,7 @@ html, body {
 
 .layout-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 5 columns when possible */
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); /* 5 columns when possible */
   gap: 20px;
   justify-content: center; /* Center the grid horizontally */
   margin-bottom: 40px;
@@ -67,15 +67,19 @@ html, body {
 
 .dimensions-overlay {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  bottom: 0px;
+  left: 0px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 3px 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 2px 2px;
   border-radius: 3px;
   z-index: 10;
-  font-size: 10px;
+  font-size: 0.8em;
   text-align: left;
+}
+
+.dimensions-overlay p {
+  margin: 3px;
 }
 
 h3 {

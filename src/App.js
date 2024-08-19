@@ -1,6 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+const pixel9FoldOpen = {
+  name: 'Pixel 9 Pro Fold (internal)',
+  diagonal: '8',
+  aspectRatio: '2076:2152',
+  layouts: []
+};
+const pixel6Pro = {
+  name: 'Pixel 6 Pro',
+  diagonal: '6.7',
+  aspectRatio: '19.5:9',
+  layouts: []
+};
+const pixelFoldOpen = {
+  name: 'Pixel Fold (internal)',
+  diagonal: '7.6',
+  aspectRatio: '6:5',
+  layouts: []
+};
+const pixelFoldClosed = {
+  name: 'Pixel Fold (front)',
+  diagonal: '5.8',
+  aspectRatio: '17.4:9',
+  layouts: []
+};
+const oneplusOpenOpen = {
+  name: 'Oneplus Open (internal)',
+  diagonal: '7.82',
+  aspectRatio: '1.0758:1',
+  layouts: []
+};
+const oneplusOpenFront = {
+  name: 'Oneplus Open (front)',
+  diagonal: '6.31',
+  aspectRatio: '20:9',
+  layouts: []
+};
+const pixel9FoldFront = {
+  name: 'Pixel 9 Pro Fold (front)',
+  diagonal: '6.30',
+  aspectRatio: '20:9',
+  layouts: []
+};
+const pixel9ProXL = {
+  name: 'Pixel 9 Pro XL',
+  diagonal: '6.8',
+  aspectRatio: '20:9',
+  layouts: []
+};
+
+const predefinedPhones = [pixel6Pro,pixel9FoldOpen,pixel9FoldFront,pixelFoldOpen,pixelFoldClosed,oneplusOpenOpen,oneplusOpenFront,pixel9ProXL];
 function App() {
   const [device1, setDevice1] = useState({ name: '', diagonal: '', aspectRatio: '', layouts: [] });
   const [device2, setDevice2] = useState({ name: '', diagonal: '', aspectRatio: '', layouts: [] });
@@ -31,9 +81,23 @@ function App() {
     }
   };
 
+  function outputButtons(sideFunction) {
+    return (
+      predefinedPhones.map((phone, index) => (
+        <button
+          key={index}
+          type="button"
+          onClick={() => sideFunction(phone)}
+        >
+          {phone.name}
+        </button>
+      ))
+    );
+  }
+
   useEffect(() => {
     const updateScaleFactor = () => {
-      const containerWidth = window.innerWidth * 0.4; // 40% of the window width for each device
+      const containerWidth = window.innerWidth * 0.32; // 40% of the window width for each device
       const maxLongSide = Math.max(screenSize1.longSide, screenSize2.longSide);
       if (maxLongSide > 0) {
         setScaleFactor(containerWidth / maxLongSide);
@@ -56,6 +120,11 @@ function App() {
       setScreenSize({ longSide, shortSide });
 
       const layoutRatios = [
+        {
+          label: '4:3 Portrait',
+          ratio: { long: 3, short: 4},
+          imageUrl: 'https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2013/07/ar-10.jpg?ssl=1',
+        },
         {
           label: '4:3',
           ratio: { long: 4, short: 3 },
@@ -100,7 +169,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Screen Layout Calculator</h1>
+      <h1>Screen Layout Visualiser</h1>
       <form onSubmit={handleSubmit} className="device-form">
         <div className="device-inputs">
           <h2>Device 1</h2>
@@ -130,6 +199,23 @@ function App() {
               required
             />
           </label>
+          <label>
+            Rotate:
+            <input
+              type="checkbox"
+               onChange={() => {
+                  const [ratioLong, ratioShort] = device1.aspectRatio.split(':');
+                  setDevice1({
+                    ...device1,
+                  aspectRatio: `${ratioShort}:${ratioLong}`,
+             });
+            }}
+          />
+          </label>
+          
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+            {outputButtons(setDevice1)}
+          </div>
         </div>
         <div className="device-inputs">
           <h2>Device 2</h2>
@@ -157,12 +243,28 @@ function App() {
               onChange={(e) => setDevice2({ ...device2, aspectRatio: e.target.value })}
             />
           </label>
+          <label>
+            Rotate:
+            <input
+              type="checkbox"
+               onChange={() => {
+                  const [ratioLong, ratioShort] = device2.aspectRatio.split(':');
+                  setDevice2({
+                    ...device2,
+                  aspectRatio: `${ratioShort}:${ratioLong}`,
+             });
+            }}
+          />
+          </label>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+            {outputButtons(setDevice2)}
+          </div>
         </div>
         <button type="submit" className="submit-button">Calculate</button>
       </form>
 
-      {device1.name && <h2>{device1.name} Layouts</h2>}
-      {!device1.name && <h2>Device 1 Layouts</h2>}
+      {device1.name && <h2>{device1.name}</h2>}
+      {!device1.name && <h2>Device 1</h2>}
       <div className="layout-grid">
         {device1.layouts.map((layout, index) => (
           <div
@@ -199,8 +301,8 @@ function App() {
         ))}
       </div>
 
-      {device2.name && <h2>{device2.name} Layouts</h2>}
-      {!device2.name && <h2>Device 2 Layouts</h2>}
+      {device2.name && <h2>{device2.name}</h2>}
+      {!device2.name && <h2>Device 2</h2>}
       <div className="layout-grid">
         {device2.layouts.map((layout, index) => (
           <div
